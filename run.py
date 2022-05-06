@@ -86,8 +86,8 @@ while True:
     cv2.putText(imgOrignal, "CLASS: " , (20, 35), font, 0.75, (0, 0, 255), 2, cv2.LINE_AA)
     cv2.putText(imgOrignal, "PROBABILITY: ", (20, 75), font, 0.75, (0, 0, 255), 2, cv2.LINE_AA)
     predictions = model.predict(img)
-    classIndex = model.predict_classes(img)
-    probabilityValue =np.amax(predictions)
+    classIndex = np.argmax(predictions, axis = 1)
+    probabilityValue = np.amax(predictions)
     if probabilityValue > threshold:
         cv2.putText(imgOrignal,str(classIndex)+" "+str(getCalssName(classIndex)), (120, 35), font, 0.75, (0, 0, 255), 2, cv2.LINE_AA)
         cv2.putText(imgOrignal, str(round(probabilityValue*100,2) )+"%", (180, 75), font, 0.75, (0, 0, 255), 2, cv2.LINE_AA)
